@@ -43,9 +43,9 @@ some quick tasks:
 ```
 cd <ngrx-store-effects-app>
 yarn install
-# OR
-npm install
 ```
+
+please note (2023-05): ```npm install```  ```npm start``` don't work anymore please use ```yarn``` instead. 
 
 This will then setup all the development and production dependencies we need.
 
@@ -53,8 +53,6 @@ Now simply run this to boot up the server:
 
 ```
 yarn start
-# OR
-npm start
 ```
 
 Visit `localhost:3000` to start building.
@@ -67,8 +65,6 @@ A quick reminder of all tasks available:
 
 ```
 yarn start
-# OR
-npm start
 ```
 
 ## Resources
