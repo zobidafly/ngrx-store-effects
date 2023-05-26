@@ -37,5 +37,6 @@ export class ProductsComponent implements OnInit {
     // command below is commented and replaced by command after-prettier using a stream
     // this.store.select<Pizza[]>(fromStore.getPizzas).subscribe({next:(state)=> this.pizzas = state});
     this.pizzas$ = this.store.select<Pizza[]>(fromStore.getPizzas);
+    this.store.dispatch(new fromStore.LoadPizzas())
   }
 }
