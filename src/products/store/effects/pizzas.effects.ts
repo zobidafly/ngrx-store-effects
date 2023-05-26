@@ -10,6 +10,7 @@ export class PizzasEffects {
   constructor(private actions$: Actions, private pizzaService: fromServices.PizzasService) {
   }
 
+  // @Effect({dispatch:false})// set dispatch = false if we want to not dispatch actions that are made inside the function
   @Effect()
   loadPizzas$ = this.actions$.ofType(pizzaActions.LOAD_PIZZAS).pipe(
     switchMap(() => {
