@@ -1,14 +1,16 @@
 import * as fromPizzas from "../actions/pizzas.actions";
 import {Pizza} from "../../models/pizza.model";
 
+export type PizzaEntities = { [id: number]: Pizza };
+
 export interface PizzaState {
-  data: Pizza[];
+  entities: PizzaEntities;
   loading: boolean;
   loaded: boolean;
 }
 
 export const initialState: PizzaState = {
-  data: [],
+  entities: {},
   loaded: false,
   loading: false
 }
@@ -35,6 +37,6 @@ export function reducer(
  * selector functions
  * @param state
  */
-export const getPizzas = (state: PizzaState) => state.data;
+export const getPizzaEntities = (state: PizzaState) => state.entities;
 export const getPizzasLoading = (state: PizzaState) => state.loading;
 export const getPizzasLoaded = (state: PizzaState) => state.loaded;
