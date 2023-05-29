@@ -3,9 +3,7 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from "rxjs/Observable";
 import * as fromStore from '../../store';
-import {PizzaEntities} from "../../store/reducers/pizzas.reducers";
-import {Object} from "core-js";
-import {Pizza} from "../../models/pizza.model";
+import {Pizza} from "../../models";
 
 // keep in mind, from module is a folder, then we take the index file inside if any
 @Component({
@@ -38,11 +36,9 @@ export class ProductsComponent implements OnInit {
   }
 
   ngOnInit() {
-    // command below is commented and replaced by command after-prettier using a stream
-    // TODO enable this command below
-    //  this.pizzaEntities$ = this.store.select<PizzaEntities>(fromStore.getPizzaEntities);
+
+    this.pizzas$ = this.store.select<Pizza[]>(fromStore.getAllPizzas);
     this.store.dispatch(new fromStore.LoadPizzas())
   }
 
-  protected readonly Object = Object;
 }
