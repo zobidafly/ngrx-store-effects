@@ -1,6 +1,7 @@
 import * as fromPizzas from "../actions/pizzas.actions";
 import {Pizza} from "../../models";
 import {LoadPizzasSuccess} from "../actions";
+import {fromPizzasToPizzaEntities} from "./ETL/pizzas.loaders";
 
 export type PizzaEntities = { [id: number]: Pizza };
 
@@ -25,12 +26,7 @@ export function reducer(
       return {...state, loading: true};
     }
     case fromPizzas.LOAD_PIZZAS_SUCCESS: {
-      const entities: PizzaEntities = (action as LoadPizzasSuccess).payload.reduce((memo: PizzaEntities, pizza: Pizza): PizzaEntities => {
-        return {
-          ...memo,
-          [pizza.id]: pizza
-        }
-      }, {});
+      const entities: PizzaEntities = fromPizzasToPizzaEntities({...state.entities}, (action as LoadPizzasSuccess).payload);
       return {...state, loading: false, loaded: true, entities};
     }
     case fromPizzas.LOAD_PIZZAS_FAIL: {
