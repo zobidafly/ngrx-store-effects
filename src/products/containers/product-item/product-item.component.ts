@@ -1,18 +1,17 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router, ActivatedRoute} from '@angular/router';
 
-import { Pizza } from '../../models/pizza.model';
-import { PizzasService } from '../../services/pizzas.service';
+import {Pizza} from '../../models/pizza.model';
+import {PizzasService} from '../../services';
 
-import { Topping } from '../../models/topping.model';
-import { ToppingsService } from '../../services/toppings.service';
+import {Topping} from '../../models/topping.model';
+import {ToppingsService} from '../../services';
 
 @Component({
   selector: 'product-item',
   styleUrls: ['product-item.component.scss'],
   template: `
-    <div 
-      class="product-item">
+    <div class="product-item">
       <pizza-form
         [pizza]="pizza"
         [toppings]="toppings"
@@ -37,7 +36,8 @@ export class ProductItemComponent implements OnInit {
     private toppingsService: ToppingsService,
     private route: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
     this.pizzaService.getPizzas().subscribe(pizzas => {
@@ -65,7 +65,7 @@ export class ProductItemComponent implements OnInit {
     } else {
       toppings = this.pizza.toppings;
     }
-    this.visualise = { ...this.pizza, toppings };
+    this.visualise = {...this.pizza, toppings};
   }
 
   onCreate(event: Pizza) {

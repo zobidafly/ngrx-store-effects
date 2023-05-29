@@ -1,2 +1,3 @@
 import {PizzasEffects} from './pizzas.effects';
-export const effects:any[]=[PizzasEffects];
+
+export const effects: any[] = [PizzasEffects];
