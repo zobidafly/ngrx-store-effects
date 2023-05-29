@@ -1,5 +1,6 @@
 import * as fromPizzas from "../actions/pizzas.actions";
 import {Pizza} from "../../models";
+import {LoadPizzasSuccess} from "../actions";
 
 export type PizzaEntities = { [id: number]: Pizza };
 
@@ -24,8 +25,13 @@ export function reducer(
       return {...state, loading: true};
     }
     case fromPizzas.LOAD_PIZZAS_SUCCESS: {
-      console.log(action.payload);
-      return {...state, loading: false, loaded: true};
+      const entities: PizzaEntities = (action as LoadPizzasSuccess).payload.reduce((memo: PizzaEntities, pizza: Pizza): PizzaEntities => {
+        return {
+          ...memo,
+          [pizza.id]: pizza
+        }
+      }, {});
+      return {...state, loading: false, loaded: true, entities};
     }
     case fromPizzas.LOAD_PIZZAS_FAIL: {
       return {...state, loading: false, loaded: false};
