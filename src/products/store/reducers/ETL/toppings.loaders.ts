@@ -1,4 +1,4 @@
-import {Topping, ToppingEntities} from "../../toppings.models";
+import {Topping, ToppingEntities} from "../../models/toppings.models";
 
 export const fromToppingsToToppingEntities = (entities: ToppingEntities, data: Topping[]): ToppingEntities =>
   data.reduce((memo: ToppingEntities, topping: Topping) => {

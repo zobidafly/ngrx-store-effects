@@ -1,5 +1,5 @@
-import {Topping} from "../models";
-export * from '../models/topping.model';
+import {Topping} from "../../models";
+export * from '../../models/topping.model';
 export type ToppingEntities = { [id: number]: Topping };
 
 export interface ToppingState {

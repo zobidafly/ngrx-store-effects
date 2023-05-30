@@ -1,6 +1,6 @@
 import * as fromToppings from "../actions/toppings.actions";
 import {fromToppingsToToppingEntities} from "./ETL/toppings.loaders";
-import {initialState, ToppingEntities, ToppingState} from "../toppings.models";
+import {initialState, ToppingEntities, ToppingState} from "../models/toppings.models";
 
 export function reducer(
   state: ToppingState = initialState,
