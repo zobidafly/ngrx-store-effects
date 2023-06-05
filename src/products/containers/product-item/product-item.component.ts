@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {Observable} from "rxjs/Observable";
+import {tap} from 'rxjs/operators'
 
 import * as fromStore from '../../store';
 import {Pizza, Topping} from '../../models';
@@ -35,7 +36,13 @@ export class ProductItemComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.pizza$ = this.store.select(fromStore.getSelectedPizza);
+    this.pizza$ = this.store.select(fromStore.getSelectedPizza).pipe(
+      tap((pizza: Pizza) => {
+        const doesPizzaExist = !!(pizza && pizza.toppings);
+        const toppingIds: number[] = doesPizzaExist ? pizza.toppings.map((topping: Topping) => topping.id) : [];
+        this.store.dispatch(new fromStore.VisualiseToppings(toppingIds));
+      })
+    );
     this.toppings$ = this.store.select(fromStore.getAllToppings);
     this.visualise$ = this.store.select(fromStore.getPizzaVisualised);
   }
