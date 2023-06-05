@@ -2,6 +2,7 @@ import * as fromPizzas from "../actions/pizzas.actions";
 import {Pizza} from "../../models";
 import {LoadPizzasSuccess} from "../actions";
 import {fromPizzasToPizzaEntities} from "./ETL/pizzas.loaders";
+import {CreatePizza, CreatePizzaSuccess} from "../actions/pizzas.actions";
 
 export type PizzaEntities = { [id: number]: Pizza };
 
@@ -31,6 +32,12 @@ export function reducer(
     }
     case fromPizzas.LOAD_PIZZAS_FAIL: {
       return {...state, loading: false, loaded: false};
+    }
+
+    case fromPizzas.CREATE_PIZZA_SUCCESS:{
+      const entities: PizzaEntities = fromPizzasToPizzaEntities({...state.entities}, [(action as CreatePizzaSuccess).payload]);
+      return {...state, loading: false, loaded: true, entities};
+
     }
   }
   return state;

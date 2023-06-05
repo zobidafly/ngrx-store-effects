@@ -15,11 +15,22 @@ export class PizzasEffects {
   // @Effect({dispatch:false})// set dispatch = false if we want to not dispatch actions that are made inside the function
   @Effect()
   loadPizzas$ = this.actions$.ofType(pizzaActions.LOAD_PIZZAS).pipe(
-    tap((value)=> console.log(`'tapping loadPizzas$'Effect{value}`, value)),
+    tap((value) => console.log(`'tapping loadPizzas$'Effect{value}`, value)),
     switchMap(() => {
       return this.pizzaService.getPizzas().pipe(
-        map((pizzas:Pizza[]) => new pizzaActions.LoadPizzasSuccess(pizzas)),
+        map((pizzas: Pizza[]) => new pizzaActions.LoadPizzasSuccess(pizzas)),
         catchError(error => of(new pizzaActions.LoadPizzasFail(error)))
+      )
+    })
+  )
+
+  @Effect()
+  createPizza$ = this.actions$.ofType(pizzaActions.CREATE_PIZZA).pipe(
+    map((action: pizzaActions.CreatePizza) => action.payload),
+    switchMap((pizza: Pizza) => {
+      return this.pizzaService.createPizza(pizza).pipe(
+        map((pizza: Pizza) => new pizzaActions.CreatePizzaSuccess(pizza)),
+        catchError((error: any) => of(new pizzaActions.CreatePizzaFail(error)))
       )
     })
   )
