@@ -10,6 +10,10 @@ export function reducer(
     case fromToppings.LOAD_TOPPINGS: {
       return {...state, loading: true};
     }
+    case fromToppings.VISUALISE_TOPPINGS: {
+      const selectedToppings: number[] = (action as fromToppings.VisualiseToppings).payload;
+      return {...state, selectedToppings};
+    }
     case fromToppings.LOAD_TOPPINGS_SUCCESS: {
       const entities: ToppingEntities = fromToppingsToToppingEntities({...state.entities}, (action as fromToppings.LoadToppingsSuccess).payload);
       return {...state, loading: false, loaded: true, entities};
@@ -24,3 +28,4 @@ export function reducer(
 export const getToppingEntities = (state: ToppingState) => state.entities;
 export const getToppingsLoading = (state: ToppingState) => state.loading;
 export const getToppingsLoaded = (state: ToppingState) => state.loaded;
+export const getSelectedToppings = (state: ToppingState) => state.selectedToppings;

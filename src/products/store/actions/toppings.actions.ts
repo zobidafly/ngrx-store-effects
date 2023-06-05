@@ -7,8 +7,17 @@ export const LOAD_TOPPINGS: string = '[Products] Load Toppings';
 export const LOAD_TOPPINGS_SUCCESS: string = '[Products] Load Toppings Success';
 export const LOAD_TOPPINGS_FAIL: string = '[Products] Load Toppings Fail';
 
+export const VISUALISE_TOPPINGS: string = `[Products] visualise Toppings`;
+
 export class LoadToppings implements Action {
   readonly type = LOAD_TOPPINGS;
+}
+
+export class VisualiseToppings implements Action {
+  readonly type: string = VISUALISE_TOPPINGS;
+
+  constructor(public payload: number[]) {
+  }
 }
 
 export class LoadToppingsFail implements Action {
