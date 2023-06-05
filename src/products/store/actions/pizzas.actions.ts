@@ -1,7 +1,13 @@
 import {Action} from '@ngrx/store';
 import {Pizza} from "../../models";
 
-export type PizzasAction = LoadPizzas | LoadPizzasFail | LoadPizzasSuccess| CreatePizza | CreatePizzaFail | CreatePizzaSuccess;
+export type PizzasAction =
+  | LoadPizzas
+  | LoadPizzasFail
+  | LoadPizzasSuccess
+  | CreatePizza
+  | CreatePizzaFail
+  | CreatePizzaSuccess;
 export const LOAD_PIZZAS: string = '[Products] Load Pizzas';
 export const LOAD_PIZZAS_FAIL: string = '[Products] Load Pizzas Fail';
 export const LOAD_PIZZAS_SUCCESS: string = '[Products] Load Pizzas Success';

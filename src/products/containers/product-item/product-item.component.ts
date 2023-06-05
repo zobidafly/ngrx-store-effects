@@ -5,6 +5,7 @@ import {tap} from 'rxjs/operators'
 
 import * as fromStore from '../../store';
 import {Pizza, Topping} from '../../models';
+import {CreatePizza} from "../../store";
 
 
 @Component({
@@ -52,7 +53,7 @@ export class ProductItemComponent implements OnInit {
   }
 
   onCreate(event: Pizza) {
-
+    this.store.dispatch(new CreatePizza(event));
   }
 
   onUpdate(event: Pizza) {
